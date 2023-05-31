@@ -70,6 +70,8 @@ class RegisterForm(forms.Form):
         password2 = self.cleaned_data.get('password2')
         if password != password2:
             raise forms.ValidationError("As senhas informadas devem ser iguais!")
+        if len(password) < 4:
+            raise forms.ValidationError("A senha deve ter pelo menos 4 caracteres!")
         return data
 
   
