@@ -9,15 +9,12 @@ class ProductFeaturedListView(ListView):
     template_name = "products/list.html"
     
     def get_queryset(self, *args, **kwargs):
+        request = self.request
         return Product.objects.featured()
 
 class ProductFeaturedDetailView(DetailView):
     queryset = Product.objects.all().featured()
     template_name = "products/featured-detail.html"
-
-    #def get_queryset(self, *args, **kwargs):
-        #request = self.request
-        #return Product.objects.featured()
 
 #Class Based View
 class ProductListView(ListView):
@@ -29,7 +26,6 @@ class ProductListView(ListView):
     #     context = super(ProductListView, self).get_context_data(*args, **kwargs)
     #     print(context)
     #     return context
-
 
 #Function Based View
 def product_list_view(request):
@@ -61,6 +57,7 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
+        print(context)
         return context
 
     def get_object(self, *args, **kwargs):
@@ -73,6 +70,7 @@ class ProductDetailView(DetailView):
 #Function Based View
 def product_detail_view(request, pk = None, *args, **kwargs):
     instance = Product.objects.get_by_id(pk)
+    print(instance)
     if instance is None:
         raise Http404("Esse produto não existe!")
 
