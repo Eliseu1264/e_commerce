@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView
 from products.models import Product
@@ -15,8 +14,11 @@ class SearchProductView(ListView):
 
     def get_queryset(self, *args, **kargs):
         request = self.request
+        print('Solicitação', request)
         result = request.GET
-        query = result.get('q', None) # result['q']
+        print('Resultado: ', result)
+        query = result.get('q',  None) # method['q']
+        print('Consulta', query)
         if query is not None:
-            return Product.objects.search(query)
+            return Product.objects.filter(title__contains = query)
         return Product.objects.featured()
