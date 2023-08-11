@@ -4,7 +4,9 @@ from products.models import Product
 from .models import Cart
 
 def cart_home(request):
+    print(request)
     cart_obj, new_obj  = Cart.objects.new_or_get(request)
+    print(cart_obj)
     return render(request, "carts/home.html", {"cart": cart_obj})
 
 def cart_update(request):
