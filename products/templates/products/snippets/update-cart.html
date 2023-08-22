@@ -6,7 +6,7 @@
     {% if product in cart.products.all %}
       No carrinho <button type='submit' class='btn btn-link'>Excluir</button>
     {% else %}
-      <button type='submit' class='btn btn-success'>Adicionar</button>
+      <button type='submit' class='btn btn-success'>Adicionar item {{ product.id }}</button>
     {% endif %}
   {% endif %}
 </form>
